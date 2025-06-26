@@ -54,9 +54,9 @@ INSTALLED_APPS = [
     'django_filters',
 
     'apps.account',
-    # 'apps.product',
-    # 'apps.cart',
-    # 'apps.order',
+    'apps.product',
+    'apps.cart',
+    'apps.order',
 ]
 
 APPEND_SLASH=False
@@ -95,6 +95,7 @@ WSGI_APPLICATION = 'ecommerce.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+
 from conf.database import *
 
 
@@ -128,6 +129,7 @@ USE_I18N = True
 
 USE_TZ = True
 
+from conf.rest import * 
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
@@ -141,7 +143,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'account.Users'
 
-from conf.rest import * 
+
 
 INTERNAL_IPS = [
     "127.0.0.1",

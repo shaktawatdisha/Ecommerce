@@ -2,8 +2,11 @@
 
 from rest_framework import serializers
 from django.contrib.auth import authenticate
+from django.contrib.auth.password_validation import validate_password
 
 from apps.account.models import Users
+from apps.account.services import UserService
+# from .services import Userservice
 from adminapi.v1.order.serializers import OrderItemsSerializer, ListUserOrderSerializer
 
 
@@ -44,3 +47,29 @@ class AdminLoginSerializer(serializers.Serializer):
             raise serializers.ValidationError("You are not authorized to login!")
         data['user'] = user
         return data
+    
+class AdminRegisterSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(write_only=True, required=True, validators=[validate_password])
+    confirm_password = serializers.CharField(write_only=True, required=True)
+    profile_image = serializers.ImageField(required=False)
+    phone = serializers.ImageField(required=False)
+    group = serializers.CharField(required=True)
+
+    class Meta:
+        model = Users
+        fields = ['email', 'password', 'confirm_password', 'group', 'phone', 'profile_image']
+        extra_kwargs = {
+            'email': {'required': True},
+        }
+
+    def validate(self, attrs):
+        if attrs['password'] != attrs['confirm_password']:
+            raise serializers.ValidationError()
+        return attrs
+
+    def create(self, validated_data):
+        validated_data.pop('confirm_password')  
+        print('➡ account/serializers.py:50 validated_data:', validated_data)
+        
+        return UserService.create_user(data=validated_data)
+    
