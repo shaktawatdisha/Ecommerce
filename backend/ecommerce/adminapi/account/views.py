@@ -4,7 +4,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from django.db.transaction import atomic, set_rollback
 
 from .serializers import ListUsersSerializer, DetailUserSerializer, AdminLoginSerializer, UpdateUserSerilaizer, AdminRegisterSerializer
-from adminapi.v1.permissions import AdminPermission
+from adminapi.permissions import AdminPermission
 from apps.account.models import Users
 from core.response import APIResponse
 from core.constants import LOGIN_SUCCESS

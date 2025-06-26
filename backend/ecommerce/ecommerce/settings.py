@@ -55,8 +55,8 @@ INSTALLED_APPS = [
 
     'apps.account',
     'apps.product',
-    'apps.cart',
-    'apps.order',
+    # 'apps.cart',
+    # 'apps.order',
 ]
 
 APPEND_SLASH=False

@@ -7,7 +7,6 @@ from django.contrib.auth.password_validation import validate_password
 from apps.account.models import Users
 from apps.account.services import UserService
 # from .services import Userservice
-from adminapi.v1.order.serializers import OrderItemsSerializer, ListUserOrderSerializer
 
 
 class ListUsersSerializer(serializers.ModelSerializer):
