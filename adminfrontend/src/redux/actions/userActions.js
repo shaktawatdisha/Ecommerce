@@ -19,7 +19,6 @@ export const listUsersAction = () => async (dispatch) => {
     })
 
     const token = localStorage.getItem('token')
-    console.log("token inuser list ", token)
 
     const config = {
       headers: {
@@ -27,8 +26,8 @@ export const listUsersAction = () => async (dispatch) => {
         "Authorization": `Bearer ${token}`,
       },
     }
-
-    const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/adminapi/v1/users/`, config)
+    const { data } = await axios.get(`http://localhost:8000/adminapi/users/`, config)
+    console.log("data in user list action", data)
 
     dispatch({
       type: USER_LIST_SUCCESS,
@@ -59,7 +58,7 @@ export const listUsersAction = () => async (dispatch) => {
       };
 
       const { data } = await axios.get(
-         `${process.env.REACT_APP_API_URL}/adminapi/v1/users/${userId}/`,
+         `http://localhost:8000/adminapi/users/${userId}/`,
         config
       );
 
@@ -94,7 +93,7 @@ export const loginAction = (email, pass) => async (dispatch) => {
       // console.log("login action called", process.env.REACT_APP_API_URL)
       const { data } = await axios.post(
           //  `${process.env.REACT_APP_API_URL}/adminapi/v1/login`,
-          'http://localhost:8000/adminapi/v1/login',
+          'http://localhost:8000/adminapi/login',
           {
               email: email,
               password: pass,

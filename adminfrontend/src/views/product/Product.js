@@ -21,9 +21,9 @@ const Product = () => {
   const [formData, setFormData] = useState({
     name: '',
     description: '',
-    brand:'',
+    // brand:'',
     price:'',
-    stock_quantity:'',
+    // stock_quantity:'',
     // status:'',
     category: '',
   })
@@ -93,21 +93,21 @@ const Product = () => {
       label: 'Description',
       _props: { scope: 'col' },
     },
-    {
-      key: 'brand',
-      label: 'Brand',
-      _props: { scope: 'col' },
-    },
+    // {
+    //   key: 'brand',
+    //   label: 'Brand',
+    //   _props: { scope: 'col' },
+    // },
     {
       key: 'price',
       label: 'Price',
       _props: { scope: 'col' },
     },
-    {
-      key: 'stock_quantity',
-      label: 'Stock Quantity',
-      _props: { scope: 'col' },
-    },
+    // {
+    //   key: 'stock_quantity',
+    //   label: 'Stock Quantity',
+    //   _props: { scope: 'col' },
+    // },
     {
       key: 'action',
       label: 'Action',

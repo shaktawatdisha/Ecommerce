@@ -12,7 +12,7 @@ from core.constants import LOGIN_SUCCESS
 class UsersViewSet(viewsets.ModelViewSet):
     serializer_class = ListUsersSerializer
     # permission_classes = [AdminPermission]
-    queryset = Users.objects.all().exclude(is_superuser=True)
+    queryset = Users.objects.all()#.exclude(is_superuser=True)
 
     def get_serializer_class(self):
         if self.action in ['list','create', 'delete']:

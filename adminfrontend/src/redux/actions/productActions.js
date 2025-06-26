@@ -31,14 +31,16 @@ export const listProductAction = () => async (dispatch) => {
                 Authorization: `Bearer ${token}`,
             }
         }
+        console.log("token in product list action")
         const {data} = await axios.get(
-             `${process.env.REACT_APP_API_URL}/adminapi/v1/product/`,
+             `http://localhost:8000/adminapi/products/`,
             config
         )
         dispatch({
             type: LIST_PRODUCT_SUCCESS,
             payload: data,
         })
+        console.log("data in product list action", data)
     } catch (error) {
         dispatch({
             type: LIST_PRODUCT_FAILURE,
@@ -62,7 +64,7 @@ export const fetchProductAction = (id) => async (dispatch) => {
             }
         }
         const {data} = await axios.get(
-             `${process.env.REACT_APP_API_URL}/adminapi/v1/product/${id}/`,
+             `http://localhost:8000/adminapi/products/${id}/`,
             config
         )
 
@@ -95,7 +97,7 @@ export const addProductAction = (item) => async (dispatch) => {
             }
         }
         const { data } = await axios.post(
-             `${process.env.REACT_APP_API_URL}/adminapi/v1/product/`,
+             `http://localhost:8000/adminapi/products/`,
             item,
             config
         )
@@ -129,7 +131,7 @@ export const deleteProductAction = (id) => async (dispatch) => {
             }
         }
         const { data } = await axios.delete(
-             `${process.env.REACT_APP_API_URL}/adminapi/v1/product/${id}/`,
+             `http://localhost:8000/adminapi/product/${id}/`,
             config
         )
         dispatch({

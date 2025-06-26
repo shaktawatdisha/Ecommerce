@@ -20,16 +20,12 @@ import {
 
 
 export const listCategoryAction = () => async (dispatch) => {
-    console.log("to fetch category list in action")
     // const baseURL = "http://localhost:8000";
-    const baseURL = process.env.REACT_APP_API_URL || "http://localhost:8000";
-    console.log("baseURL in list category action", baseURL)
     try {
         dispatch ({
             type: LIST_CATEGORY_REQUEST,
         })
         const token = localStorage.getItem("token");
-        console.log("token in list category action", import.meta.env.REACT_APP_API_URL)
         const config = {
             headers: {
                 "Content-Type": 'application/json',
@@ -37,12 +33,10 @@ export const listCategoryAction = () => async (dispatch) => {
             }
         }
         const {data} = await axios.get(
-            //  `${process.env.REACT_APP_API_URL}/adminapi/v1/category/`,
-            'http://localhost:8000/adminapi/v1/category/',
+            'http://localhost:8000/adminapi/categories/',
             config
         )
 
-        console.log("category list data in action", data)
         dispatch({
             type: LIST_CATEGORY_SUCCESS,
             payload: data,
@@ -58,7 +52,6 @@ export const listCategoryAction = () => async (dispatch) => {
 }
 
 export const fetchCategoryAction = (id) => async (dispatch) => {
-    console.log("to fetch category detail in action",id)
     try {
         dispatch ({
             type: FETCH_CATEGORY_REQUEST,
@@ -71,7 +64,7 @@ export const fetchCategoryAction = (id) => async (dispatch) => {
             }
         }
         const {data} = await axios.get(
-             `${process.env.REACT_APP_API_URL}/adminapi/v1/category/${id}/`,
+            'http://localhost:8000/adminapi/categories/',
             config
         )
         console.log("category detail data in action", data)
@@ -91,7 +84,6 @@ export const fetchCategoryAction = (id) => async (dispatch) => {
 }
 
 export const addCategoryAction = (item) => async (dispatch) => {
-    console.log("category details", item)
     try {
         dispatch({
             type: ADD_CATEGORY_REQUEST,
@@ -105,7 +97,7 @@ export const addCategoryAction = (item) => async (dispatch) => {
             }
         }
         const { data } = await axios.post(
-             `${process.env.REACT_APP_API_URL}/adminapi/v1/category/`,
+             'http://localhost:8000/adminapi/categories/',
             item,
             config
         )
@@ -126,7 +118,6 @@ export const addCategoryAction = (item) => async (dispatch) => {
 
 
 export const deleteCategoryAction = (id) => async (dispatch) => {
-    console.log("delete category action ", id)
     try {
         dispatch({
             type: DELETE_CATEGORY_REQUEST,
@@ -140,7 +131,7 @@ export const deleteCategoryAction = (id) => async (dispatch) => {
             }
         }
         const { data } = await axios.delete(
-             `${process.env.REACT_APP_API_URL}/adminapi/v1/category/${id}/`,
+             `http://localhost:8000/adminapi/categories/${id}/`,
             config
         )
         dispatch({
