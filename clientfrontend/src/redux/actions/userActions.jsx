@@ -25,7 +25,7 @@ export const signup = (fname, lname, email, pass) => async (dispatch) => {
         };
 
         const { data } = await axios.post(
-            `${process.env.REACT_APP_API_URL}/api/v1/register`,
+            `http://localhost:8000/api/register`,
             {
                 first_name: fname,
                 last_name: lname,  
@@ -67,7 +67,7 @@ export const login = (email, pass) => async (dispatch) => {
         };
 
         const { data } = await axios.post(
-           `${process.env.REACT_APP_API_URL}/api/v1/login`,
+           `http://localhost:8000/api/login`,
             {
                 email: email,
                 password: pass,
@@ -116,7 +116,7 @@ export const profile = () => async (dispatch) => {
       };
       
       const { data } = await axios.get(
-        `${process.env.REACT_APP_API_URL}/api/v1/profile`,
+        `${process.env.REACT_APP_API_URL}/api/profile`,
         config
       );
   

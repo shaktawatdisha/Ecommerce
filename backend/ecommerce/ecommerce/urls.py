@@ -22,7 +22,7 @@ from rest_framework import permissions
 from django.conf import settings
 from django.conf.urls.static import static
 from debug_toolbar.toolbar import debug_toolbar_urls
-from api.v1.account.views import index
+# from api.account.views import index
 
 
 # schema_view = get_schema_view(
@@ -41,7 +41,7 @@ from api.v1.account.views import index
 urlpatterns = [
     path('admin/', admin.site.urls),
     # re_path(r'^.*$', index, name='index'),
-    # path('api/', include('api.urls')),
+    path('api/', include('api.urls')),
     path('adminapi/', include('adminapi.urls')),
     
     # path('swagger<format>/', schema_view.without_ui(cache_timeout=0), name='schema-json'),

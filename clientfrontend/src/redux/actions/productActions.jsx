@@ -24,10 +24,11 @@ export const listProducts = () => async (dispatch) => {
     };
 
     const { data } = await axios.get(
-      `${process.env.REACT_APP_API_URL}/api/v1/product`,
+      'http://localhost:8000/api/product',
       config
     );
 
+    console.log("data", data);
     dispatch({
       type: PRODUCT_LIST_SUCCESS,
       payload: data,
@@ -59,7 +60,7 @@ export const productDetail = (productId) => async (dispatch) => {
     };
 
     const { data } = await axios.get(
-     `${process.env.REACT_APP_API_URL}/api/v1/product/${productId}`,
+     `http://localhost:8000/api/product/${productId}`,
       config
     );
 
