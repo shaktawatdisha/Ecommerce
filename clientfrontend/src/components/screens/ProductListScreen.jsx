@@ -4,7 +4,7 @@ import { Row, Col, Container } from 'react-bootstrap'
 import Product from '../Product'
 import { listProducts } from '../../redux/actions/productActions'
 
-const ProductScreen = () => {
+const ProductListScreen = () => {
   // const userLogin = useSelector((state) => state.userLogin)
   // const {uerror, uloading, userInfo} = userLogin
 
@@ -40,4 +40,4 @@ const ProductScreen = () => {
   )
 }
 
-export default ProductScreen
+export default ProductListScreen

@@ -48,6 +48,16 @@ const Header = () => {
                 </LinkContainer>
               </li>
               <li className="nav-item">
+                <LinkContainer to="/category">
+                  <Nav.Link className="nav-link active">Categories <i class="fa-solid fa-list"></i></Nav.Link>
+                </LinkContainer>
+              </li>
+              <li className="nav-item">
+                <LinkContainer to="/wishlist">
+                  <Nav.Link className="nav-link active">Wishlist <i class="fa-solid fa-heart"></i></Nav.Link>
+                </LinkContainer>
+              </li>
+              <li className="nav-item">
                 <LinkContainer to="/cart">
                   <Nav.Link className="nav-link active">Cart <i class="fa-solid fa-cart-shopping"></i></Nav.Link>
                 </LinkContainer>
@@ -74,11 +84,8 @@ const Header = () => {
                   </LinkContainer>
                 )}
               </NavDropdown>
-            <li className="nav-item">
-                <LinkContainer to="/wishlist">
-                  <Nav.Link className="nav-link active"><i class="fa-solid fa-heart"></i></Nav.Link>
-                </LinkContainer>
-              </li>
+            
+              
             {/* <div>
             <LinkContainer to="/user">
                   <Nav.Link className="nav-link"><i class="fa-regular fa-user mx-3"></i></Nav.Link>

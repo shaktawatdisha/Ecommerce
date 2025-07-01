@@ -14,9 +14,8 @@ import Wishlist from "./components/Wishlist";
 import BlankScreen from "./components/screens/BlankScreen";
 import ProfileScreen from "./components/screens/ProfileScreen";
 import Interview from "./components/screens/Interview";
-
-
-
+import Category from "./components/Category";
+import CategoriesListScreen from "./components/screens/CategoriesListScreen";
 
 const App = () => {
   const token = localStorage.getItem('token');
@@ -34,6 +33,8 @@ const App = () => {
           <Route path="/product/:id" element={<ProtectedRoute><ProductDetailScreen /></ProtectedRoute>}/>
           <Route path="/wishlist" element={<ProtectedRoute><Wishlist /></ProtectedRoute>}/>
           <Route path="/cart" element={<ProtectedRoute><CartScreen /></ProtectedRoute>}/>
+          <Route path="/category" element={<ProtectedRoute><CategoriesListScreen /></ProtectedRoute>}/>
+          <Route path="/category/:id" element={<ProtectedRoute><Category /></ProtectedRoute>}/>
 
           <Route path="/interview" element={<Interview/>} />
           <Route exact path="/login" element={<LoginScreen />}></Route>
