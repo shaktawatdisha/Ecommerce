@@ -19,7 +19,7 @@ import {
 } from '../constants/productConstants';
 
 
-export const listProductAction = () => async (dispatch) => {
+export const listProductAction = (queryParams = '') => async (dispatch) => {
     try {
         dispatch ({
             type: LIST_PRODUCT_REQUEST,
@@ -33,7 +33,7 @@ export const listProductAction = () => async (dispatch) => {
         }
         console.log("token in product list action")
         const {data} = await axios.get(
-             `http://localhost:8000/adminapi/products/`,
+             `http://localhost:8000/adminapi/products/${queryParams}`,
             config
         )
         dispatch({

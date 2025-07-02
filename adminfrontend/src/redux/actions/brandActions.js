@@ -65,7 +65,7 @@ export const fetchBrandAction = (id) => async (dispatch) => {
         }
         const {data} = await axios.get(
             //  `${process.env.REACT_APP_API_URL}/api/categories/${id}/`,
-            `http://localhost:8000/adminapi/brands/${id}`,
+            `http://localhost:8000/adminapi/brands/${id}/`,
             config
         )
 

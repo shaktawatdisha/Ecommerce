@@ -15,17 +15,16 @@ import {
 } from '@coreui/react'
 
 const BrandDetail = () => {
-  const { catid: catId } = useParams()
+  const { bid: brandId } = useParams()
   const dispatch = useDispatch()
   const brandDetail = useSelector((state) => state.fetchBrand)
   const { loading, error, brand } = brandDetail
-  console.log('brand', brand)
 
   useEffect(() => {
-    if (catId) {
-      dispatch(fetchBrandAction(catId))
+    if (brandId) {
+      dispatch(fetchBrandAction(brandId))
     }
-  }, [dispatch, catId])
+  }, [dispatch, brandId])
 
   return (
     <CRow>

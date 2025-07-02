@@ -20,15 +20,24 @@ import { sassNull } from 'sass'
 const Product = () => {
   const [formData, setFormData] = useState({
     name: '',
-    description: '',
-    // brand:'',
+    // description: '',
+    category: '',
+    brand:'',
     price:'',
-    // stock_quantity:'',
+    stock_quantity:'',
     // status:'',
     category: '',
   })
+
+  const [searchTerm, setSearchTerm] = useState('')
+  const [selectedCategory, setSelectedCategory] = useState('')
+  const [selectedBrand, setSelectedBrand] = useState('')
+  const [ordering, setOrdering] = useState('')
+
   const [visible, setVisible] = useState(false)
   const [categoryOptions, setCategoryOptions] = useState([])
+
+  const [brandOptions, setBrandOptions] = useState([])
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -39,16 +48,26 @@ const Product = () => {
   const categoryList = useSelector((state) => state.listCategory)
   const { loading: listcatLoading, error: listcatError, category: category } = categoryList
 
+  const brandList = useSelector((state) => state.listBrand)
+  const { loading: listbrandLoading, error: listBrandError, brand: brand } = brandList
+  console.log('Brand List:', brand)
+
   const productDelete = useSelector((state) => state.listProduct)
   const { loading: deleteLoading, error: deleteError, product: deleteSuccess } = productDelete
 
 
-
   useEffect(() => {
-    dispatch(listProductAction())
+    let query = '?'
+  
+    if (searchTerm) query += `search=${searchTerm}&`
+    if (selectedCategory) query += `category=${selectedCategory}&`
+    if (selectedBrand) query += `brand=${selectedBrand}&`
+    if (ordering) query += `ordering=${ordering}`
+  
+    dispatch(listProductAction(query))
     dispatch(listCategoryAction())
-    
-  }, [dispatch])
+
+  }, [dispatch, searchTerm, selectedCategory, selectedBrand, ordering])
 
   useEffect(() => {
     if (category){
@@ -56,6 +75,13 @@ const Product = () => {
       setCategoryOptions([{ label: 'Select', value: ''}, ...options])
     }
   }, [category])
+
+  useEffect(() => {
+    if (brand){
+      const options= brand.map((brd)=>({label:brd.name, value: brd.id}))
+      setBrandOptions([{ label: 'Select', value: ''}, ...options])
+    }
+  }, [brand])
 
 
   const handleInputChange = (e) => {
@@ -69,8 +95,11 @@ const Product = () => {
   const handleSave = () => {
     const updatedFromData = {
       ...formData,
-      category: formData.category ? parseInt(formData.category, 10): null
+      category: formData.category ? parseInt(formData.category, 10): null,
+      brand: formData.brand ? parseInt(formData.brand, 10): null,
+      stock: formData.stock_quantity ? parseInt(formData.stock_quantity, 10) : 0,
     }
+
     dispatch(addProductAction(updatedFromData)).then(() => {
       dispatch(listProductAction()); 
       setVisible(false); 
@@ -89,25 +118,30 @@ const Product = () => {
       _props: { scope: 'col' },
     },
     {
-      key: 'description',
-      label: 'Description',
+      key: 'category',
+      label: 'Category',
       _props: { scope: 'col' },
     },
     // {
-    //   key: 'brand',
-    //   label: 'Brand',
+    //   key: 'description',
+    //   label: 'Description',
     //   _props: { scope: 'col' },
     // },
+    {
+      key: 'brand',
+      label: 'Brand',
+      _props: { scope: 'col' },
+    },
     {
       key: 'price',
       label: 'Price',
       _props: { scope: 'col' },
     },
-    // {
-    //   key: 'stock_quantity',
-    //   label: 'Stock Quantity',
-    //   _props: { scope: 'col' },
-    // },
+    {
+      key: 'stock_quantity',
+      label: 'Stock Quantity',
+      _props: { scope: 'col' },
+    },
     {
       key: 'action',
       label: 'Action',
@@ -117,7 +151,10 @@ const Product = () => {
 
   const items = product?.map((prod) => ({
     ...prod,
-    // subcategory: prod.subcategory?.name || '-',
+    category: prod.category?.name || '-',
+    brand: prod.brand?.name || '-',
+    stock_quantity: prod.stock || '-',
+
     action: (
       <>
         <CButton
@@ -146,6 +183,8 @@ const Product = () => {
   const handleView = (pId) => {
     navigate(`/product-detail/${pId}`)
   }
+
+  console.log('Product List:', columns, items)
   return (
     <>
       {/* {listLoading && <p>Loading categories...</p>}
@@ -159,6 +198,45 @@ const Product = () => {
       >
         Add Product
       </CButton>
+
+      <div className="d-flex mb-3">
+        <CFormInput
+          type="text"
+          placeholder="Search..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="me-2"
+        />
+
+        <CFormSelect
+          value={selectedCategory}
+          onChange={(e) => setSelectedCategory(e.target.value)}
+          className="me-2"
+          options={[{ label: 'All Categories', value: '' }, ...categoryOptions]}
+        />
+
+        <CFormSelect
+          value={selectedBrand}
+          onChange={(e) => setSelectedBrand(e.target.value)}
+          className="me-2"
+          options={[{ label: 'All Brands', value: '' }, ...brandOptions]}
+        />
+
+        <CFormSelect
+          value={ordering}
+          onChange={(e) => setOrdering(e.target.value)}
+          options={[
+            { label: 'Sort By', value: '' },
+            { label: 'Price Low to High', value: 'price' },
+            { label: 'Price High to Low', value: '-price' },
+            { label: 'Newest First', value: '-created_at' },
+            { label: 'Oldest First', value: 'created_at' },
+          ]}
+        />
+      </div>
+
+
+
       <CTable columns={columns} items={items} />
       {/* {deleteLoading && <p>Deleting category...</p>}
       {deleteError && <p>Error deleting category: {deleteError}</p>} */}

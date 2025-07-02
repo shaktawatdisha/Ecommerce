@@ -62,7 +62,6 @@ const ProductDetail = () => {
         grouped[attr.name].push(attr)
       })
       setAttributeGroups(grouped)
-      console.log("attribute groups", attributeGroups)
     }
   }, [productAttributes])
 
@@ -87,18 +86,15 @@ const ProductDetail = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
-    console.log("name value", name,value)
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
 
   const handleFileChange = (e) => {
-    console.log("file change", e.target.files[0])
     setFormData((prev) => ({ ...prev, uploaded_images: e.target.files[0] }))
   }
 
   const handleSave = () => {
-    console.log("Saving with attributes:", formData)
     const payload = new FormData()
   
     formData.attributes.forEach((attrId) => {
