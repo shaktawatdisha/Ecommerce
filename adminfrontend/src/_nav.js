@@ -36,8 +36,24 @@ const _nav = [
   },
   {
     component: CNavItem,
+    name: 'Brand',
+    to: '/brand',
+    badge: {
+      color: 'info',
+    },
+  },
+  {
+    component: CNavItem,
     name: 'Product',
     to: '/product',
+    badge: {
+      color: 'info',
+    },
+  },
+  {
+    component: CNavItem,
+    name: 'Product Attributes',
+    to: '/product-attributes',
     badge: {
       color: 'info',
     },

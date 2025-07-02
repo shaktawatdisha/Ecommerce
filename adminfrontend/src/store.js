@@ -2,6 +2,8 @@ import { configureStore, createSlice } from '@reduxjs/toolkit';
 import { userListReducer, userDetailReducer, userLoginReducer } from './redux/reducers/userReducers'; 
 import { addCategoryReducer, listCategoryReducer, fetchCategoryReducer, deleteCategoryReducer, editCategoryReducer } from './redux/reducers/categoryReducers';
 import { addProductReducer, listProductReducer, fetchProductReducer, deleteProductReducer, editProductReducer } from './redux/reducers/productReducers';
+import { addProductAttributesReducer, listProductAttributesReducer, fetchProductAttributesReducer, deleteProductAttributesReducer, editProductAttributesReducer } from './redux/reducers/productAttributesReducers';
+import { addBrandReducer, listBrandReducer, fetchBrandReducer, deleteBrandReducer, editBrandReducer } from './redux/reducers/brandReducers';
 
 const initialState = {
   sidebarShow: true,
@@ -39,6 +41,17 @@ const store = configureStore({
     deleteProduct: deleteProductReducer,
     editProduct: editProductReducer,
 
+    addProductAttributes: addProductAttributesReducer,
+    listProductAttributes: listProductAttributesReducer,
+    fetchProductAttributes: fetchProductAttributesReducer,
+    deleteProductAttributes: deleteProductAttributesReducer,
+    editProductAttributes: editProductAttributesReducer,
+
+    addBrand: addBrandReducer,
+    listBrand: listBrandReducer,
+    fetchBrand: fetchBrandReducer,
+    deleteBrand: deleteBrandReducer,
+    editBrandReducers: editBrandReducer,
     
   },
 });

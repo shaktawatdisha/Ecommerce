@@ -58,7 +58,6 @@ export const fetchCategoryReducer = (state = initialState, action) => {
 
 
 export const listCategoryReducer = (state = initialState, action) => {
-    console.log("listCategoryReducer called", action);
     switch (action.type) {
         case LIST_CATEGORY_REQUEST:
             return { loading: true, category: [] }; 

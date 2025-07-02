@@ -24,7 +24,7 @@ class BrandViewSet(viewsets.ModelViewSet):
 
 
 class ProductViewSet(viewsets.ModelViewSet):
-    queryset = Product.objects.all()
+    queryset = Product.objects.all().order_by('-created_at')
     permission_classes = [AdminPermission]
 
     def get_serializer_class(self):
@@ -32,19 +32,16 @@ class ProductViewSet(viewsets.ModelViewSet):
             return ProductDetailSerializer
         return ProductSerializer
 
-
 class ProductAttributeViewSet(viewsets.ModelViewSet):
     queryset = ProductAttribute.objects.all()
     serializer_class = ProductAttributeSerializer
     permission_classes = [AdminPermission]
 
 
-
 class ProductImageViewSet(viewsets.ModelViewSet):
     queryset = ProductImage.objects.all()
     serializer_class = ProductImageSerializer
     permission_classes = [AdminPermission]
-
 
 class ProductSKUViewSet(viewsets.ModelViewSet):
     queryset = ProductSKU.objects.all()

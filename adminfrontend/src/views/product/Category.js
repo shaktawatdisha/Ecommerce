@@ -19,7 +19,7 @@ const Category = () => {
   const [formData, setFormData] = useState({
     name: '',
     description: '',
-    subcategory: 0,
+    // subcategory: 0,
   })
   const [visible, setVisible] = useState(false)
   const [subcategoryOptions, setSubcategoryOptions] = useState([])
@@ -80,11 +80,11 @@ const Category = () => {
       label: 'Description',
       _props: { scope: 'col' },
     },
-    {
-      key: 'subcategory',
-      label: 'Sub Category',
-      _props: { scope: 'col' },
-    },
+    // {
+    //   key: 'subcategory',
+    //   label: 'Sub Category',
+    //   _props: { scope: 'col' },
+    // },
     {
       key: 'action',
       label: 'Action',

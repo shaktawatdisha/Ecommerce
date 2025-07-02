@@ -8,6 +8,7 @@ router = SimpleRouter(trailing_slash=False)
 
 router.register('product', ProductViewSet, basename=PRODUCT_URL_NAME)
 router.register('category', CategoryViewSet, basename=CATEGORY_URL_NAME)
+router.register('product-images', ProductImageViewSet, basename=PRODUCT_IMAGE_URL_NAME)
 
 
 urlpatterns = [
